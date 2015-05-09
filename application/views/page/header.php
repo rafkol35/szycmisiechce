@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Szyć mi się chce!- <?php echo $title; ?></title>
+<head>
+<meta charset="utf-8">
+<title>Szyć mi się chce!- <?php echo $title; ?></title>
 
 <!--         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'> -->
         
@@ -19,6 +19,22 @@
         ?>
         
     </head>
-    <body>
-        <div class="wrapper">
-          
+<body>
+	<div class="wrapper">
+
+		<div id="header">
+		<div id="headlogo">
+        <?php 
+        	echo img("resources/images/page/logo.png");
+        ?>
+        </div>
+        <div id="menu">
+        <?php 
+        	echo img("resources/images/page/zmienlinie.png");        	
+        	echo img("resources/images/page/art.png");
+        	echo img("resources/images/page/exclusive.png");
+        ?>
+        </div>
+		</div>
+		<div id="content">
+		
