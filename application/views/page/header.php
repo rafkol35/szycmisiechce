@@ -28,13 +28,4 @@
         	echo img("resources/images/page/logo.png");
         ?>
         </div>
-        <div id="menu">
-        <?php 
-        	echo img("resources/images/page/zmienlinie.png");        	
-        	echo img("resources/images/page/art.png");
-        	echo img("resources/images/page/exclusive.png");
-        ?>
-        </div>
-		</div>
-		<div id="content">
-		
+        

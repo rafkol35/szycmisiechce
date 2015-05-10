@@ -1,11 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Art extends CI_Controller {
+class Exclusive extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
 		$this->dataMenu = array();
-		$this->dataMenu['what'] = 'art';
+		$this->dataMenu['what'] = 'exclusive';
 	}
 	
     public function index() {
@@ -14,10 +14,12 @@ class Art extends CI_Controller {
     
     public function choosecolor(){
     	$data = array();
+    	$dataMenu = array();
+    	$dataMenu['what'] = 'exclusive';
     	$this->load->view('page/header', $data);
     	$this->load->view('page/menu', $this->dataMenu);
     	$this->load->view('page/contentbegin', $data);
-    	$this->load->view('page/art/choosecolor', $data);
+    	$this->load->view('page/exclusive/index', $data);
     	$this->load->view('page/footer', $data);
     }
     
