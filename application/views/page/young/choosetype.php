@@ -1,6 +1,10 @@
-<!-- young/choosetype żćżźćąśęółę ŻŹĆŃŃńĘÓŁĄ  -->
+young/choosetype
+
 <?php
-for($i = 0 ; $i < 100 ; ++$i){
-	//echo "young/choosetype żćżźćąśęółę ŻŹĆŃŃńĘÓŁĄ";
-	//echo "<br />";
-}
+$imgprop = array (
+		'src' => 'resources/images/page/young/gotochoosecolor.png',
+		'alt' => '',
+		'class' => 'gotoRight footeritem'
+);
+echo anchor('young/choosecolor',img($imgprop));
+

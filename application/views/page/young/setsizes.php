@@ -1,16 +1,16 @@
-young choosecolor
+young/setsizes 
 
 <?php
 $imgprop = array (
-		'src' => 'resources/images/page/young/gotosetsizes.png',
+		'src' => 'resources/images/page/young/gotochoosecolor.png',
 		'alt' => '',
 		'class' => 'gotoRight footeritem'
 );
-echo anchor('young/setsizes',img($imgprop));
+echo anchor('young/order',img($imgprop));
 
 $imgprop = array (
 		'src' => 'resources/images/page/young/gotosetsizes.png',
 		'alt' => '',
 		'class' => 'gotoLeft footeritem'
 );
-echo anchor('young/choosetype',img($imgprop));
+echo anchor('young/choosecolor',img($imgprop));

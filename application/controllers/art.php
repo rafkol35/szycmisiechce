@@ -23,7 +23,29 @@ class Art extends CI_Controller {
     
     public function choosedesign(){
         $data = array();
-        $this->load->view('page/art/choosedesign', $data);
+    	$this->load->view('page/header', $data);
+    	$this->load->view('page/menu', $this->dataMenu);
+    	$this->load->view('page/contentbegin', $data);
+    	$this->load->view('page/art/choosedesign', $data);
+    	$this->load->view('page/footer', $data);
+    }
+    
+    public function setsizes(){
+    	$data = array();
+    	$this->load->view('page/header', $data);
+    	$this->load->view('page/menu', $this->dataMenu);
+    	$this->load->view('page/contentbegin', $data);
+    	$this->load->view('page/art/setsizes', $data);
+    	$this->load->view('page/footer', $data);
+    }
+    
+    public function order(){
+    	$data = array();
+    	$this->load->view('page/header', $data);
+    	$this->load->view('page/menu', $this->dataMenu);
+    	$this->load->view('page/contentbegin', $data);
+    	$this->load->view('page/art/order', $data);
+    	$this->load->view('page/footer', $data);
     }
     
     protected $dataMenu;

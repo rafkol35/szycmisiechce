@@ -1,21 +1,33 @@
 <div id="menu">
 <?php 
+	$imgprop = array (
+			'src' => 'resources/images/page/art.png',
+			'alt' => '',
+			'class' => 'footeritem'
+	);
+	
 	echo img("resources/images/page/zmienlinie.png");
 	switch( $what )
 	{
 		case 'young':
-			echo anchor('art',img("resources/images/page/art.png"));
-			echo anchor('exclusive',img("resources/images/page/exclusive.png"));
+			$imgprop['src'] = 'resources/images/page/art.png';
+			echo anchor('art',img($imgprop));
+			$imgprop['src'] = 'resources/images/page/exclusive.png';
+			echo anchor('exclusive',img($imgprop));
 			break;
 			
 		case 'art':
-			echo anchor('young',img("resources/images/page/young.png"));
-			echo anchor('exclusive',img("resources/images/page/exclusive.png"));
+			$imgprop['src'] = 'resources/images/page/young.png';
+			echo anchor('young',img($imgprop));
+			$imgprop['src'] = 'resources/images/page/exclusive.png';
+			echo anchor('exclusive',img($imgprop));
 			break;
 			
 		case 'exclusive':
-			echo anchor('art',img("resources/images/page/art.png")).'<br />';
-			echo anchor('young',img("resources/images/page/young.png"));
+			$imgprop['src'] = 'resources/images/page/art.png';
+			echo anchor('art',img($imgprop)).'<br />';
+			$imgprop['src'] = 'resources/images/page/young.png';
+			echo anchor('young',img($imgprop));
 			break;
 	}
 ?>
