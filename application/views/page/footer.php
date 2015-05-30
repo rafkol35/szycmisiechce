@@ -8,16 +8,16 @@
 		'alt' => '',
 		'class' => 'footeritem'
 	);
-	echo img($imgprop);
+	echo anchor('common/jakkupowac',img($imgprop));
 
 	$imgprop['src'] = "resources/images/page/regulamin.png";
-	echo img($imgprop);
+	echo anchor('common/regulamin',img($imgprop));
 	
 	$imgprop['src'] = "resources/images/page/kontakt.png";
-	echo img($imgprop);
+	echo anchor('common/kontakt',img($imgprop));
 	
 	$imgprop['src'] = "resources/images/page/facebook.png";
-	echo img($imgprop);
+	echo anchor('common/facebook',img($imgprop));
 ?>
 </div>
 </body>

@@ -14,3 +14,9 @@ $imgprop = array (
 		'class' => 'gotoLeft footeritem'
 );
 echo anchor('young/choosetype',img($imgprop));
+
+?>
+
+<div>
+
+</div>
