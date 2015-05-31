@@ -1,4 +1,5 @@
 <?php
+
 $imgprop = array (
 		'src' => 'resources/images/page/young/gotochoosecolor.png',
 		'alt' => '',

@@ -15,6 +15,7 @@ class Young extends CI_Controller {
     public function choosetype(){
         $data = array();
         $data['includeJSs'] = array('index2.php');
+        $data['title'] = 'TITLE';
         $dataYoungHeader['what'] = 'choosetype';
         $this->load->view('page/header', $data);
         $this->load->view('page/menu', $this->dataMenu);
@@ -26,7 +27,8 @@ class Young extends CI_Controller {
     
     public function choosecolor(){
     	$data = array();
-    	$data['includeJSs'] = array('index2.php');
+    	$data['includeJSs'] = array('page/young/choosecolor.php');
+    	$data['title'] = 'TITLE';
     	$dataYoungHeader['what'] = 'choosecolor';
     	$this->load->view('page/header', $data);
     	$this->load->view('page/menu', $this->dataMenu);
@@ -39,6 +41,7 @@ class Young extends CI_Controller {
     public function setsizes(){
     	$data = array();
     	$data['includeJSs'] = array('index2.php');
+    	$data['title'] = 'TITLE';
     	$dataYoungHeader['what'] = 'setsizes';
     	$this->load->view('page/header', $data);
     	$this->load->view('page/menu', $this->dataMenu);
@@ -51,6 +54,7 @@ class Young extends CI_Controller {
     public function order(){
     	$data = array();
     	$data['includeJSs'] = array('index2.php');
+    	$data['title'] = 'TITLE';
     	$dataYoungHeader['what'] = 'order';
     	$this->load->view('page/header', $data);
     	$this->load->view('page/menu', $this->dataMenu);
