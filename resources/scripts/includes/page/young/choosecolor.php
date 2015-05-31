@@ -93,7 +93,20 @@ $(document).ready(function() {
 	imgmain.onload = imgMainReady;
 
 	color = document.getElementById('color');
-	canvasmain.addEventListener('mousemove', pick);
+	//canvasmain.addEventListener('mousemove', pick);
+	
+	$( "#canvasmain" ).mousemove(function( event ) {
+  		var msg = "";
+  		//msg += event.clientX + ", " + event.clientY;
+  		//msg += " " + event.pageX + ", " + event.pageY;
+
+  		var parentOffset = $(this).parent().offset(); 
+  		var relX = event.pageX - parentOffset.left;
+  	   	var relY = event.pageY - parentOffset.top;
+  	  	msg += "    " + relX + ", " + relY;
+  	  
+  		$( "#color" ).text( msg );
+	});
 	
     //draw();
 });
