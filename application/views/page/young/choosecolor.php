@@ -19,8 +19,16 @@ echo anchor('young/choosetype',img($imgprop));
 
 	<div id="youngleftColumn">
 		<canvas id="canvasmain" style="" width="360" height="480"></canvas>
-		<canvas id="canvasmask" style="position: absolute;" width="360" height="480"></canvas>
-		<div id="youngChooseColorFoBC">PRZÓD / TYŁ</div>
+		<?php 
+		for( $i = 1 ; $i <= 5 ; ++$i ){
+			echo '<canvas id="canvasmask'.$i.'" style="position: absolute;" width="360" height="480"></canvas>';
+		}
+		?>
+		
+		<div id="youngChooseColorFoBC">
+			<div id="chooseFront" class="youngChooseColorFoBCItem">PRZÓD </div>
+			<div class="youngChooseColorFoBCItemSlash">&nbsp;/&nbsp;</div> 
+			<div id="chooseBack" class="youngChooseColorFoBCItem"> TYŁ</div></div>
 	</div>
 	
 	<div id="youngRightColumn">

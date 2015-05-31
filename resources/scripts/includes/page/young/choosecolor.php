@@ -16,9 +16,13 @@ var imgmain = new Image();
 var canvasmain;
 var ctxmain;
 
-var imgmask = new Image();
-var canvasmask;
-var ctxmask;
+var imgmasks = new Array();
+var canvasmasks = new Array();
+var ctxmasks = new Array();
+
+var colRs = [255,128,0,128,255]; //new Array();
+var colGs = [128,0,255,128,0];//new Array();
+var colBs = [0,128,255,128,0];//new Array();
 
 var color;
 
@@ -32,62 +36,84 @@ function pick(event) {
 	var rgba = 'rgba(' + data[0] + ',' + data[1] + ',' + data[2] + ',' + data[3] + ')';
 	color.textContent = " " + x + " " + y + " " + rgba;	  
 }
-	
+
+var masksToLoad = 5;
+var loadedMasks = 0;
+
 function imgMainReady() {
+
+	//colRs.push();
+	//cols.push();
+	//colRs.push();
 	
 	  ctxmain.drawImage(imgmain, 0, 0);
 	  imgmain.style.display = 'none';
 
-	  //var imageData = ctxmain.getImageData(0,0,canvasmain.width, canvasmain.height);
-	  //var data2 = imageData.data;
-	  
-	  //for (var i = 0; i < data2.length; i += 4) {
-	      //data2[i]     = 0;     // red
-	      //data2[i + 1] = data2[i + 1] * xyp; // green
-	      //data2[i + 2] = data2[i + 2] * xyp; // blue
-	      //data2[i + 3] = 64; // blue
-	  //}
-	  //ctxmain.putImageData(imageData, 0, 0);
-
-	  imgmask.src = '<?php echo base_url('resources/images/page/logo.png'); ?>'; //'https://mdn.mozillademos.org/files/5397/rhino.jpg';
-	  canvasmask = document.getElementById('canvasmask');
-	  ctxmask = canvasmask.getContext('2d');
-	  imgmask.onload = imgMaskReady;
-	  //alert("qwer");
+	  for( var i = 0 ; i < masksToLoad ; ++i ){
+	  	imgmasks.push( new Image() );	  
+	  	//imgmasks[0].src = '<?php echo base_url('resources/images/content/young/choosetype/type04_pas1.png'); ?>';
+	  	imgmasks[i].src = '<?php echo base_url('resources/images/content/young/choosetype'); ?>'+'/type04_pas'+(i+1)+'.png';
+	  	canvasmasks.push( document.getElementById('canvasmask'+(i+1)) );
+	  	ctxmasks.push( canvasmasks[i].getContext('2d') );
+	  	imgmasks[i].onload = imgMaskLoadCounter;
+	  }
 };
 
+function imgMaskLoadCounter(){
+	loadedMasks++;
+	if( loadedMasks == masksToLoad ){
+		imgMaskReady();
+	}
+}
 
 function imgMaskReady() {
-	  ctxmask.drawImage(imgmask, 0, 0);
-	  imgmask.style.display = 'none';
-	  canvasmask.style.display = 'none';
-	  
+	//alert("imgMaskReady");
+
 	  var imageMainData = ctxmain.getImageData(0,0,canvasmain.width, canvasmain.height);
 	  var dataMain = imageMainData.data;
 
-	  var imageMaskData = ctxmask.getImageData(0,0,canvasmask.width, canvasmask.height);
-	  var dataMask = imageMaskData.data;
-	  
-	  for (var i = 0; i < dataMain.length; i += 4) {
-	      //dataMain[i + 3] = dataMask[i + 3]; // alpha
-	      if( dataMask[i + 3] > 0 )
-	      { 
-	    	  dataMain[i+3] = 0;
-
-		      //dataMain[i]   *= (dataMask[i] / 512);
-		      //dataMain[i+1] *= (dataMask[i+1] / 512);
-		      //dataMain[i+2] *= (dataMask[i+2] / 512);
-	      }
+	  for( var i = 0 ; i < masksToLoad ; ++i ){
+		alert("imgMaskReady");
+		
+		  var imgmask = imgmasks[i];
+		  var canvasmask = canvasmasks[i];
+		  var ctxmask = ctxmasks[i]; 
+		  
+		  ctxmask.drawImage(imgmask, 0, 0);
+		  imgmask.style.display = 'none';
+		  canvasmask.style.display = 'none';
+		  
+		  var imageMaskData = ctxmask.getImageData(0,0,canvasmask.width, canvasmask.height);
+		  var dataMask = imageMaskData.data;
+	
+		  var colR = colRs[i]/255;
+		  var colG = colGs[i]/255;
+		  var colB = colBs[i]/255;
+		  
+		  for (var pix = 0; pix < dataMain.length; pix += 4) {
+		      //dataMain[i + 3] = dataMask[i + 3]; // alpha
+		      if( dataMask[pix + 3] > 0 )
+		      { 
+		    	  //dataMain[i+3] = 0;
+	
+		    	  //dataMain[i]   *= (dataMask[i] / 512);
+			      //dataMain[i+1] *= (dataMask[i+1] / 512);
+			      //dataMain[i+2] *= (dataMask[i+2] / 512);
+			      
+			      dataMain[pix]   *= ( (dataMain[pix]/255)   * colR);
+			      dataMain[pix+1] *= ( (dataMain[pix+1]/255) * colG);
+			      dataMain[pix+2] *= ( (dataMain[pix+2]/255) * colB);
+		      }
+		  }
+		  ctxmain.putImageData(imageMainData, 0, 0);
 	  }
-	  ctxmain.putImageData(imageMainData, 0, 0);
-
 	  
 };
 
 $(document).ready(function() {
     menuready();
 
-    imgmain.src = '<?php echo base_url('resources/images/content/young/choosetype/type04.png'); ?>'; //'https://mdn.mozillademos.org/files/5397/rhino.jpg';
+    imgmain.src = '<?php echo base_url('resources/images/content/young/choosetype/type04_org.png'); ?>';
     canvasmain = document.getElementById('canvasmain');
 	ctxmain = canvasmain.getContext('2d');
 	imgmain.onload = imgMainReady;
