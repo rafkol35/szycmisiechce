@@ -48,7 +48,8 @@ function imgMainReady() {
 	
 	  ctxmain.drawImage(imgmain, 0, 0);
 	  imgmain.style.display = 'none';
-
+	  canvasmain.style.display = 'none';
+	  	
 	  for( var i = 0 ; i < masksToLoad ; ++i ){
 	  	imgmasks.push( new Image() );	  
 	  	//imgmasks[0].src = '<?php echo base_url('resources/images/content/young/choosetype/type04_pas1.png'); ?>';
@@ -67,14 +68,10 @@ function imgMaskLoadCounter(){
 }
 
 function imgMaskReady() {
-	//alert("imgMaskReady");
-
 	  var imageMainData = ctxmain.getImageData(0,0,canvasmain.width, canvasmain.height);
 	  var dataMain = imageMainData.data;
 
 	  for( var i = 0 ; i < masksToLoad ; ++i ){
-		alert("imgMaskReady");
-		
 		  var imgmask = imgmasks[i];
 		  var canvasmask = canvasmasks[i];
 		  var ctxmask = ctxmasks[i]; 
@@ -91,21 +88,15 @@ function imgMaskReady() {
 		  var colB = colBs[i]/255;
 		  
 		  for (var pix = 0; pix < dataMain.length; pix += 4) {
-		      //dataMain[i + 3] = dataMask[i + 3]; // alpha
 		      if( dataMask[pix + 3] > 0 )
 		      { 
-		    	  //dataMain[i+3] = 0;
-	
-		    	  //dataMain[i]   *= (dataMask[i] / 512);
-			      //dataMain[i+1] *= (dataMask[i+1] / 512);
-			      //dataMain[i+2] *= (dataMask[i+2] / 512);
-			      
 			      dataMain[pix]   *= ( (dataMain[pix]/255)   * colR);
 			      dataMain[pix+1] *= ( (dataMain[pix+1]/255) * colG);
 			      dataMain[pix+2] *= ( (dataMain[pix+2]/255) * colB);
 		      }
 		  }
 		  ctxmain.putImageData(imageMainData, 0, 0);
+		  canvasmain.style.display = 'inherit';
 	  }
 	  
 };
