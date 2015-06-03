@@ -18,10 +18,13 @@ echo anchor('young/choosetype',img($imgprop));
 <div id="youngContent">
 
 	<div id="youngleftColumn">
-		<canvas id="canvasmain" style="" width="360" height="480"></canvas>
+		<canvas id="canvasMain" style="" width="360" height="480"></canvas>
 		<?php 
 		for( $i = 1 ; $i <= 5 ; ++$i ){
-			echo '<canvas id="canvasmask'.$i.'" style="position: absolute;" width="360" height="480"></canvas>';
+			echo '<canvas id="canvasMask0_'.$i.'" style="position: absolute;" width="360" height="480"></canvas>';
+		}
+		for( $i = 1 ; $i <= 4 ; ++$i ){
+			echo '<canvas id="canvasMask1_'.$i.'" style="position: absolute;" width="360" height="480"></canvas>';
 		}
 		?>
 		

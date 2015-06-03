@@ -12,22 +12,36 @@ function menuready() {
     });
 }
 
-var imgmain = new Image();
-var canvasmain;
-var ctxmain;
+//var imgMainFront = new Image();
+//var imgMainBack = new Image();
+var imgsMain = new Array();
+var canvasMain;
+var ctxMain;
 
-var imgmasks = new Array();
-var canvasmasks = new Array();
-var ctxmasks = new Array();
+var imgsMasks = new Array();
+var canvasesMasks = new Array();
+var ctxsMasks = new Array();
 
-var colRs = [255,128,0,128,255]; //new Array();
-var colGs = [128,0,255,128,0];//new Array();
-var colBs = [0,128,255,128,0];//new Array();
+//var imgMasksBack = new Array();
+//var canvasMasksBack = new Array();
+//var ctxMasksBack = new Array();
+
+//var colRsFront = [255,128,0,128,255]; //new Array();
+//var colGsFront = [128,0,255,128,0];//new Array();
+//var colBsFront = [0,128,255,128,0];//new Array();
+
+//var colRsBack = [255,128,0,128]; //new Array();
+//var colGsBack = [128,0,255,128];//new Array();
+//var colBsBack = [0,128,255,128];//new Array();
+
+var colRs = new Array();
+var colGs = new Array();
+var colBs = new Array();
 
 var color;
 
 var ready = false;
-var masksToLoad = 5;
+var masksToLoad = [5,4];
 var loadedMasks = 0;
 
 var lastMousePosX = 0;
@@ -35,48 +49,57 @@ var lastMousePosY = 0;
 
 var choosedColorSample = 0;
 
-function pick(event) {
-	var x = event.layerX;
-	var y = event.layerY;
-	
-	var pixel = ctxmain.getImageData(x, y, 1, 1);
-	  
-	var data = pixel.data;
-	var rgba = 'rgba(' + data[0] + ',' + data[1] + ',' + data[2] + ',' + data[3] + ')';
-	color.textContent = " " + x + " " + y + " " + rgba;	  
+var frontOrBack = -1;
+
+function chooseFront(){
+	if( frontOrBack == 0 ) return;
+	frontOrBack = 0;
+	redrawAll(frontOrBack);
+}
+function chooseBack(){
+	if( frontOrBack == 1 ) return;
+	frontOrBack = 1;
+	redrawAll(frontOrBack);
 }
 
 function imgMaskLoadCounter(){
 	loadedMasks++;
-	if( loadedMasks == (masksToLoad+1) ){
-		redrawAll();
+	if( loadedMasks == (masksToLoad[0]+masksToLoad[1]+1) ){
+		//redrawAll(0);
+		chooseFront();
 	}
 }
 
-function redrawAll(){
+function redrawAll(whichSide){
 	//rysuje bazowy obrazek
-	ctxmain.clearRect(0, 0, canvasmain.width, canvasmain.height);
 	
-	ctxmain.drawImage(imgmain, 0, 0);
+	//alert('redrawAll');
+	
+	ctxMain.clearRect(0, 0, canvasMain.width, canvasMain.height);
+	//if( whichSide === 0 )
+	ctxMain.drawImage(imgsMain[whichSide], 0, 0);
 	
 	// rysuje pasy
-	var imageMainData = ctxmain.getImageData(0,0,canvasmain.width, canvasmain.height);
+	var imageMainData = ctxMain.getImageData(0,0,canvasMain.width, canvasMain.height);
 	  var dataMain = imageMainData.data;
 
-	  for( var i = 0 ; i < masksToLoad ; ++i ){
-		  var imgmask = imgmasks[i];
-		  var canvasmask = canvasmasks[i];
-		  var ctxmask = ctxmasks[i]; 
+	  for( var i = 0 ; i < masksToLoad[whichSide] ; ++i ){
+
+		  //alert('redrawAll s ' + i);
+		  
+		  var imgmask = imgsMasks[whichSide][i];
+		  var canvasmask = canvasesMasks[whichSide][i];
+		  var ctxmask = ctxsMasks[whichSide][i]; 
 		  
 		  ctxmask.drawImage(imgmask, 0, 0);
-		  
+
 		  var imageMaskData = ctxmask.getImageData(0,0,canvasmask.width, canvasmask.height);
 		  var dataMask = imageMaskData.data;
 	
-		  var colR = colRs[i]/255;
-		  var colG = colGs[i]/255;
-		  var colB = colBs[i]/255;
-		  
+		  var colR = colRs[whichSide][i]/255;
+		  var colG = colGs[whichSide][i]/255;
+		  var colB = colBs[whichSide][i]/255;
+
 		  for (var pix = 0; pix < dataMain.length; pix += 4) {
 		      if( dataMask[pix + 3] > 0 )
 		      { 
@@ -85,16 +108,15 @@ function redrawAll(){
 			      dataMain[pix+2] *= ( (dataMain[pix+2]/255) * colB);
 		      }
 		  }
-		  ctxmain.putImageData(imageMainData, 0, 0);
-		  canvasmain.style.display = 'inherit';
+		  ctxMain.putImageData(imageMainData, 0, 0);
+		  canvasMain.style.display = 'inherit';
+
+		  //alert('redrawAll f ' + i);
 	  }
 }
 
 function onMouseMove(event){
 	var msg = "";
-	//msg += event.clientX + ", " + event.clientY;
-	//msg += " " + event.pageX + ", " + event.pageY;
-
 	var parentOffset = $(this).parent().offset(); 
 	lastMousePosX = Math.floor( event.pageX - parentOffset.left );
 	lastMousePosY = Math.floor( event.pageY - parentOffset.top );
@@ -108,32 +130,29 @@ function myRand(min,max){
 }
 
 function onMouseDown(){
-	//alert( $(choosedColorSample) );
-	
 	if( choosedColorSample == 0 ) return;
-	
-	for( var i = 0 ; i < masksToLoad ; ++i ){
 
-		var pixel = ctxmasks[i].getImageData(lastMousePosX,lastMousePosY,1,1);
+	//alert( 'onMouseDown' );
+	
+	for( var i = 0 ; i < masksToLoad[frontOrBack] ; ++i ){
+
+		var pixel = ctxsMasks[frontOrBack][i].getImageData(lastMousePosX,lastMousePosY,1,1);
 		var data = pixel.data;
 		
 		if( data[3] > 2 ){
-			//alert( $(choosedColorSample).css("background-color") );
-			//alert( $(choosedColorSample) );
-			
+						
 			var cc = $(choosedColorSample).css("background-color");
-			
 			var ccc = colorToInts( cc ); 
+
+			//alert( 'onMouseDown' + cc );
 			
-			//colRs[i] = myRand(0, 255);
-			//colGs[i] = myRand(0, 255);
-			//colBs[i] = myRand(0, 255);
+			colRs[frontOrBack][i] = ccc[0];
+			colGs[frontOrBack][i] = ccc[1];
+			colBs[frontOrBack][i] = ccc[2];
 			
-			colRs[i] = ccc[0];
-			colGs[i] = ccc[1];
-			colBs[i] = ccc[2];
-			
-			redrawAll();
+			redrawAll(frontOrBack);
+
+			return;
 		} 
 	}
 }
@@ -171,41 +190,70 @@ function colorToInts(color) {
     var blue = parseInt(digits[4]);
 
     return [red,green,blue];
-    
-    //alert(" " + red + " " + green + " " + blue );
-     
-    //var rgb = blue | (green << 8) | (red << 16);
-    //return digits[1] + '#' + rgb.toString(16);
 };
+
 
 $(document).ready(function() {
     menuready();
 
-    imgmain.src = '<?php echo base_url('resources/images/content/young/choosetype/type04_org.png'); ?>';
-    canvasmain = document.getElementById('canvasmain');
-	ctxmain = canvasmain.getContext('2d');
-	imgmain.onload = imgMaskLoadCounter;
+    //alert( 'ready s' );
+    
+    canvasMain = document.getElementById('canvasMain');
+	ctxMain = canvasMain.getContext('2d');
+	
+    colRs.push([255,128,0,128,255]); //new Array();
+    colGs.push([128,0,255,128,0]);//new Array();
+    colBs.push([0,128,255,128,0]);//new Array();
 
-	imgmain.style.display = 'none';
-	canvasmain.style.display = 'none';
+    colRs.push([60,120,180,240]); //new Array();
+    colGs.push([60,120,180,240]);//new Array();
+    colBs.push([60,120,180,240]);//new Array();
+    
+	for( var s = 0 ; s < 2 ; ++s ){
 
-	 for( var i = 0 ; i < masksToLoad ; ++i ){
-		  	imgmasks.push( new Image() );	  
-		  	imgmasks[i].src = '<?php echo base_url('resources/images/content/young/choosetype'); ?>'+'/type04_pas'+(i+1)+'.png';
-		  	canvasmasks.push( document.getElementById('canvasmask'+(i+1)) );
-		  	ctxmasks.push( canvasmasks[i].getContext('2d') );
-		  	imgmasks[i].onload = imgMaskLoadCounter;
+		imgsMain.push( new Image() );
+		imgsMain[s].src = '<?php echo base_url('/resources/images/content/young/choosetype'); ?>' + '/type04_'+s+'_org.png';
+	    imgsMain[s].onload = imgMaskLoadCounter;
 
-		  	imgmasks[i].style.display = 'none';
-			canvasmasks[i].style.display = 'none';
+	    imgsMain[s].style.display = 'none';
+
+	    canvasesMasks.push( new Array() );
+		ctxsMasks.push( new Array() );
+		imgsMasks.push( new Array() );
+		
+	 for( var i = 0 ; i < masksToLoad[s] ; ++i ){
+		 //alert('a');
+		  	imgsMasks[s].push( new Image() );
+		  	//alert('a2');	  
+		  	imgsMasks[s][i].src = '<?php echo base_url('resources/images/content/young/choosetype'); ?>'+'/type04_'+s+'_pas'+(i+1)+'.png';
+
+		  	
+		  	canvasesMasks[s].push( document.getElementById('canvasMask'+s+'_'+(i+1)) );
+		  	ctxsMasks[s].push( canvasesMasks[s][i].getContext('2d') );
+
+		  	//alert('a3');
+		  	
+		  	imgsMasks[s][i].onload = imgMaskLoadCounter;
+
+		  	//alert('b');
+		  	
+		  	imgsMasks[s][i].style.display = 'none';
+			canvasesMasks[s][i].style.display = 'none';
+
+			//alert('c');
 		  }
+	}
 	
 	color = document.getElementById('color');
-	//canvasmain.addEventListener('mousemove', pick);
+
+	//alert( 'ready f' );
 	
-	$( "#canvasmain" ).on('mousemove',onMouseMove);
-	$( "#canvasmain" ).on('mousedown',onMouseDown);
+	$( "#canvasMain" ).on('mousemove',onMouseMove);
+	$( "#canvasMain" ).on('mousedown',onMouseDown);
 
 	$('.youngChooseColorSample').on('mousedown',colorChoose);
+
+	$('#chooseFront').on('click',chooseFront);
+	$('#chooseBack').on('click',chooseBack);
 });
 </script>
