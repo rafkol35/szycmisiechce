@@ -33,6 +33,8 @@ var loadedMasks = 0;
 var lastMousePosX = 0;
 var lastMousePosY = 0;
 
+var choosedColorSample = 0;
+
 function pick(event) {
 	var x = event.layerX;
 	var y = event.layerY;
@@ -106,19 +108,75 @@ function myRand(min,max){
 }
 
 function onMouseDown(){
+	//alert( $(choosedColorSample) );
+	
+	if( choosedColorSample == 0 ) return;
+	
 	for( var i = 0 ; i < masksToLoad ; ++i ){
 
 		var pixel = ctxmasks[i].getImageData(lastMousePosX,lastMousePosY,1,1);
 		var data = pixel.data;
 		
 		if( data[3] > 2 ){
-			colRs[i] = myRand(0, 255);
-			colGs[i] = myRand(0, 255);
-			colBs[i] = myRand(0, 255);
+			//alert( $(choosedColorSample).css("background-color") );
+			//alert( $(choosedColorSample) );
+			
+			var cc = $(choosedColorSample).css("background-color");
+			
+			var ccc = colorToInts( cc ); 
+			
+			//colRs[i] = myRand(0, 255);
+			//colGs[i] = myRand(0, 255);
+			//colBs[i] = myRand(0, 255);
+			
+			colRs[i] = ccc[0];
+			colGs[i] = ccc[1];
+			colBs[i] = ccc[2];
+			
 			redrawAll();
 		} 
 	}
 }
+
+function activateColorChooseSample(colorSample){
+	$(colorSample).animate({opacity: 0.5}, 350,
+		function() {
+			$(colorSample).animate({opacity: 1.0}, 350, function() { activateColorChooseSample(colorSample); } ); 
+		} 
+	);
+}
+
+function deactivateColorChooseSample(colorSample){
+	if( colorSample == 0 ) return; 
+	$(colorSample).stop();
+	$(colorSample).animate( {opacity: 1.0}, 350);
+}
+
+function colorChoose(){
+	if( choosedColorSample == this ) return;
+	deactivateColorChooseSample(choosedColorSample);
+	choosedColorSample = this; 
+	activateColorChooseSample(choosedColorSample);
+}
+
+function colorToInts(color) {
+    if (color.substr(0, 1) === '#') {
+        return color;
+    }
+    
+    var digits = /(.*?)rgb\((\d+), (\d+), (\d+)\)/.exec(color);
+
+    var red = parseInt(digits[2]);
+    var green = parseInt(digits[3]);
+    var blue = parseInt(digits[4]);
+
+    return [red,green,blue];
+    
+    //alert(" " + red + " " + green + " " + blue );
+     
+    //var rgb = blue | (green << 8) | (red << 16);
+    //return digits[1] + '#' + rgb.toString(16);
+};
 
 $(document).ready(function() {
     menuready();
@@ -147,5 +205,7 @@ $(document).ready(function() {
 	
 	$( "#canvasmain" ).on('mousemove',onMouseMove);
 	$( "#canvasmain" ).on('mousedown',onMouseDown);
+
+	$('.youngChooseColorSample').on('mousedown',colorChoose);
 });
 </script>
