@@ -125,8 +125,9 @@ function onMouseDown(){
 		if( data[3] > 2 ){
 						
 			var cc = $(choosedColorSample).css("background-color");
+			//console.log(cc);
 			var ccc = colorToInts( cc ); 
-
+			//console.log(ccc);
 			colRs[frontOrBack][i] = ccc[0];
 			colGs[frontOrBack][i] = ccc[1];
 			colBs[frontOrBack][i] = ccc[2];

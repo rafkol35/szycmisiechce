@@ -36,7 +36,7 @@ echo anchor('art/choosedesign',img($imgprop));
 				//$imgprop['id'] = 'dressType'.$i;
 				//$imgprop['src'] = 'resources/images/content/young/choosetype/'.$dressTypes[$i];
 				//echo img($imgprop);
-				echo '<div class="artChooseColorSampleDesc">'.$colorsDescs[$i].'</div>';
+				echo '<div id="artChooseColorSampleDesc_'.$i.'" class="artChooseColorSampleDesc">'.$colorsDescs[$i].'</div>';
 				echo '</div>';
 				echo '<div class="artChooseColorSampleSpacer"></div>';
 			}

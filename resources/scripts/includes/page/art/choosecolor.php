@@ -29,71 +29,63 @@ var loadedImgs = 0;
 function imgLoadCounter(){
 	loadedImgs++;
 	if( loadedImgs == imgsToLoad ){
-		redrawAll();
+		redrawAll('rgb(255, 0, 0)');
 	}
 }
 
 function redrawAll(color){
+	if( !color ) return;
+	
 	ctxMain.clearRect(0, 0, canvasMain.width, canvasMain.height);
  	ctxMain.drawImage(imgMain, 0, 0);
 
  	ctxMask.clearRect(0, 0, canvasMask.width, canvasMask.height);
  	ctxMask.drawImage(imgMask, 0, 0);
+
+ 	var imageMainData = ctxMain.getImageData(0,0,canvasMain.width, canvasMain.height);
+	var dataMain = imageMainData.data;
+
+ 	var imageMaskData = ctxMask.getImageData(0,0,canvasMask.width, canvasMask.height);
+	var dataMask = imageMaskData.data;
+
+	var colorRGB = colorToInts(color);
+	console.log(colorRGB);
+	
+	var colR = colorRGB[0]/255;
+	var colG = colorRGB[1]/255;
+ 	var colB = colorRGB[2]/255;
+
+ 	for (var pix = 0; pix < dataMain.length; pix += 4) {
+	    if( dataMask[pix + 3] > 0 ){ 
+		    dataMain[pix]   *= ( (dataMain[pix]/255)   * colR);
+		    dataMain[pix+1] *= ( (dataMain[pix+1]/255) * colG);
+			dataMain[pix+2] *= ( (dataMain[pix+2]/255) * colB);
+		}
+ 	}
+	ctxMain.putImageData(imageMainData, 0, 0);
+	canvasMain.style.display = 'inherit';
 }
 
-// function redrawAll(whichSide){
-// 	//rysuje bazowy obrazek
-	
-// 	//alert('redrawAll');
-	
-// 	ctxMain.clearRect(0, 0, canvasMain.width, canvasMain.height);
-// 	//if( whichSide === 0 )
-// 	ctxMain.drawImage(imgsMain[whichSide], 0, 0);
-	
-// 	// rysuje pasy
-// 	var imageMainData = ctxMain.getImageData(0,0,canvasMain.width, canvasMain.height);
-// 	  var dataMain = imageMainData.data;
-
-// 	  for( var i = 0 ; i < masksToLoad[whichSide] ; ++i ){
-
-// 		  //alert('redrawAll s ' + i);
-		  
-// 		  var imgmask = imgsMasks[whichSide][i];
-// 		  var canvasmask = canvasesMasks[whichSide][i];
-// 		  var ctxmask = ctxsMasks[whichSide][i]; 
-		  
-// 		  ctxmask.drawImage(imgmask, 0, 0);
-
-// 		  var imageMaskData = ctxmask.getImageData(0,0,canvasmask.width, canvasmask.height);
-// 		  var dataMask = imageMaskData.data;
-	
-// 		  var colR = colRs[whichSide][i]/255;
-// 		  var colG = colGs[whichSide][i]/255;
-// 		  var colB = colBs[whichSide][i]/255;
-
-// 		  for (var pix = 0; pix < dataMain.length; pix += 4) {
-// 		      if( dataMask[pix + 3] > 0 )
-// 		      { 
-// 			      dataMain[pix]   *= ( (dataMain[pix]/255)   * colR);
-// 			      dataMain[pix+1] *= ( (dataMain[pix+1]/255) * colG);
-// 			      dataMain[pix+2] *= ( (dataMain[pix+2]/255) * colB);
-// 		      }
-// 		  }
-// 		  ctxMain.putImageData(imageMainData, 0, 0);
-// 		  canvasMain.style.display = 'inherit';
-
-// 		  //alert('redrawAll f ' + i);
-// 	  }
-// }
-
  function colorChoose(){
-	redrawAll();
+	 console.log( $(this) );
+	 // artChooseColorSampleDesc_
+	 var sampleDescID = $(this).attr('id');
+	 //console.log( sampleID );
+	 
+	 var sampleID = '#artChooseColorSample_' + sampleDescID.substr(25);
+	 //console.log( sampleID );
+
+	 var colorRGB = $(sampleID).css("background-color");
+	 //console.log(cc);
+	 
+	 redrawAll(colorRGB);
 }
 
 function colorToInts(color) {
     if (color.substr(0, 1) === '#') {
         return color;
     }
+    console.log(color);
     
     var digits = /(.*?)rgb\((\d+), (\d+), (\d+)\)/.exec(color);
 
@@ -122,8 +114,6 @@ function colorSampleBig(sampleID,show){
 
 $(document).ready(function() {
     menuready();
-
-    console.log('ready begin');
     
     $( ".artChooseColorSample" ).on('mouseenter',colorSampleOnMouseEnter);
  	$( ".artChooseColorSample" ).on('mouseleave',colorSampleOnMouseLeave);
@@ -144,7 +134,5 @@ $(document).ready(function() {
 	imgMask.src = '<?php echo base_url('/resources/images/content/art/choosecolor/base_mask.png'); ?>';
 	imgMask.onload = imgLoadCounter;
 	imgMask.style.display = 'none';
-
-	console.log('ready finish');
 });
 </script>
