@@ -27,21 +27,24 @@ echo anchor('art/choosedesign',img($imgprop));
 			Kiedy najedziesz kursorem na miniaturkę wzoru, zobaczysz jego powiększenie. Przeciągnij nadruk na zdjęcie, aby zobaczyć jak prezentuje się na spódnicy. 
 		</div>
 		<div id="artChooseColorPalette">
-		div.artChooseColorSample
-		div.artChooseColorSampleDesc
 		<?php 
-			$colors = array();
-			$colorsDescs = array('Różowa bawełna');
+			$colors = array('f5989d','7accc8','ffcc00','111111','448cca','ffffff','598527');
+			$colorsDescs = array('Różowa bawełna','Turkusowy tiul','Żółta wiskoza','Czarna tafta','Niebieski jeans','Biały len','Zielona bawełna');
 			
-			$imgprop['class'] = 'youngChooseTypeMiniView';
-			$dressTypes = array("type01.png","type02.png","type03.png","type04.png","type05.png","type01.png","type02.png","type03.png","type04.png","type05.png");
-			for( $i = 0 ; $i < count($dressTypes) ; ++$i ){
-				echo '<div class="youngChooseTypeMiniCont">';
-				$imgprop['id'] = 'dressType'.$i;
-				$imgprop['src'] = 'resources/images/content/young/choosetype/'.$dressTypes[$i];
-				echo img($imgprop);
-				echo '<div class="youndChooseTypeMiniDesc">'.$dressTypes[$i].'</div>';
+			//$imgprop['class'] = 'youngChooseTypeMiniView';
+			//$dressTypes = array("type01.png","type02.png","type03.png","type04.png","type05.png","type01.png","type02.png","type03.png","type04.png","type05.png");
+			
+			for( $i = 0 ; $i < count($colors) ; ++$i ){
+				echo '<div class="artChooseColorSampleContainer">';
+				echo '<div id="artChooseColorSample_'.$i.'" class="artChooseColorSample" style="background-color: #'.$colors[$i].'">';
+				echo '<div id="artChooseColorSampleBig_'.$i.'" class="artChooseColorSampleBig" style="background-color: #'.$colors[$i].'"></div>';
 				echo '</div>';
+				//$imgprop['id'] = 'dressType'.$i;
+				//$imgprop['src'] = 'resources/images/content/young/choosetype/'.$dressTypes[$i];
+				//echo img($imgprop);
+				echo '<div class="artChooseColorSampleDesc">'.$colorsDescs[$i].'</div>';
+				echo '</div>';
+				echo '<div class="artChooseColorSampleSpacer"></div>';
 			}
 			?>
 		</div>

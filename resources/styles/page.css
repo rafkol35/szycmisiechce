@@ -203,21 +203,44 @@ div#artChooseColorDesc{
 }
 
 div#artChooseColorPalette{
-	
+	margin-top: 40px;
 }
 
+div.artChooseColorSampleContainer{
+	/*clear: both;
+	/*margin-bottom: 15px;
+	margin-top: 15px;*/	
+}
+div.artChooseColorSampleSpacer{
+	height: 15px;
+	clear: both;
+}
 div.artChooseColorSample{
+	postition: relative;
 	width: 30px;
 	height: 30px;
 	float: left;
 	/*display: inline;*/
 	/*margin-right: 10px;*/
 	/*margin-bottom: 15px;*/
-	cursor: pointer;
+	/*cursor: pointer;*/
+}
+
+div.artChooseColorSampleBig{
+	position: relative;
+	top: -10px;
+	left: -10px;
+	background-color: black;
+	width: 50px;
+	height: 50px;
+	z-index: 5;
 }
 
 div.artChooseColorSampleDesc{
-	float: left;	
+	float: left;
+	margin-left: 15px;
+	padding-top: 5px;
+	cursor: pointer;
 }
 	
 /* art ***********************************************/

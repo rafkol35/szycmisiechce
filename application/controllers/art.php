@@ -14,7 +14,7 @@ class Art extends CI_Controller {
     
     public function choosecolor(){
     	$data = array();
-    	$data['includeJSs'] = array('index2.php');
+    	$data['includeJSs'] = array('page/art/choosecolor.php');
     	$data['title'] = 'TITLE';
     	$dataArtHeader['what'] = 'choosecolor';
     	$this->load->view('page/header', $data);
