@@ -1,15 +1,13 @@
-art/choosedesign
-
 <?php
 $imgprop = array (
-		'src' => 'resources/images/page/young/gotochoosecolor.png',
+		'src' => 'resources/images/page/art/gotosetsizes.png',
 		'alt' => '',
 		'class' => 'gotoRight footeritem'
 );
 echo anchor('art/setsizes',img($imgprop));
 
 $imgprop = array (
-		'src' => 'resources/images/page/young/gotosetsizes.png',
+		'src' => 'resources/images/page/art/backtochoosecolor.png',
 		'alt' => '',
 		'class' => 'gotoLeft footeritem'
 );

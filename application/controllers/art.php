@@ -14,36 +14,52 @@ class Art extends CI_Controller {
     
     public function choosecolor(){
     	$data = array();
+    	$data['includeJSs'] = array('index2.php');
+    	$data['title'] = 'TITLE';
+    	$dataArtHeader['what'] = 'choosecolor';
     	$this->load->view('page/header', $data);
     	$this->load->view('page/menu', $this->dataMenu);
     	$this->load->view('page/contentbegin', $data);
+    	$this->load->view('page/art/header', $dataArtHeader);
     	$this->load->view('page/art/choosecolor', $data);
     	$this->load->view('page/footer', $data);
     }
     
     public function choosedesign(){
         $data = array();
+    	$data['includeJSs'] = array('index2.php');
+    	$data['title'] = 'TITLE';
+    	$dataArtHeader['what'] = 'choosedesign';
     	$this->load->view('page/header', $data);
     	$this->load->view('page/menu', $this->dataMenu);
     	$this->load->view('page/contentbegin', $data);
+    	$this->load->view('page/art/header', $dataArtHeader);
     	$this->load->view('page/art/choosedesign', $data);
     	$this->load->view('page/footer', $data);
     }
     
     public function setsizes(){
     	$data = array();
+    	$data['includeJSs'] = array('index2.php');
+    	$data['title'] = 'TITLE';
+    	$dataArtHeader['what'] = 'setsizes';
     	$this->load->view('page/header', $data);
     	$this->load->view('page/menu', $this->dataMenu);
     	$this->load->view('page/contentbegin', $data);
+    	$this->load->view('page/art/header', $dataArtHeader);
     	$this->load->view('page/art/setsizes', $data);
     	$this->load->view('page/footer', $data);
     }
     
     public function order(){
     	$data = array();
+    	$data['includeJSs'] = array('index2.php');
+    	$data['title'] = 'TITLE';
+    	$dataArtHeader['what'] = 'order';
     	$this->load->view('page/header', $data);
     	$this->load->view('page/menu', $this->dataMenu);
     	$this->load->view('page/contentbegin', $data);
+    	$this->load->view('page/art/header', $dataArtHeader);
     	$this->load->view('page/art/order', $data);
     	$this->load->view('page/footer', $data);
     }

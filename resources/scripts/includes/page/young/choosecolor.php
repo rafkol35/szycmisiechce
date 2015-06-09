@@ -12,8 +12,6 @@ function menuready() {
     });
 }
 
-//var imgMainFront = new Image();
-//var imgMainBack = new Image();
 var imgsMain = new Array();
 var canvasMain;
 var ctxMain;
@@ -21,18 +19,6 @@ var ctxMain;
 var imgsMasks = new Array();
 var canvasesMasks = new Array();
 var ctxsMasks = new Array();
-
-//var imgMasksBack = new Array();
-//var canvasMasksBack = new Array();
-//var ctxMasksBack = new Array();
-
-//var colRsFront = [255,128,0,128,255]; //new Array();
-//var colGsFront = [128,0,255,128,0];//new Array();
-//var colBsFront = [0,128,255,128,0];//new Array();
-
-//var colRsBack = [255,128,0,128]; //new Array();
-//var colGsBack = [128,0,255,128];//new Array();
-//var colBsBack = [0,128,255,128];//new Array();
 
 var colRs = new Array();
 var colGs = new Array();
@@ -65,7 +51,6 @@ function chooseBack(){
 function imgMaskLoadCounter(){
 	loadedMasks++;
 	if( loadedMasks == (masksToLoad[0]+masksToLoad[1]+1) ){
-		//redrawAll(0);
 		chooseFront();
 	}
 }
@@ -132,8 +117,6 @@ function myRand(min,max){
 function onMouseDown(){
 	if( choosedColorSample == 0 ) return;
 
-	//alert( 'onMouseDown' );
-	
 	for( var i = 0 ; i < masksToLoad[frontOrBack] ; ++i ){
 
 		var pixel = ctxsMasks[frontOrBack][i].getImageData(lastMousePosX,lastMousePosY,1,1);
@@ -144,8 +127,6 @@ function onMouseDown(){
 			var cc = $(choosedColorSample).css("background-color");
 			var ccc = colorToInts( cc ); 
 
-			//alert( 'onMouseDown' + cc );
-			
 			colRs[frontOrBack][i] = ccc[0];
 			colGs[frontOrBack][i] = ccc[1];
 			colBs[frontOrBack][i] = ccc[2];
