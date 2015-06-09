@@ -8,18 +8,12 @@ echo anchor('art/choosedesign',img($imgprop));
 ?>
 <div id="youngContent">
 	<div id="youngleftColumn">
-		<?php 
-		$imgprop = array (
-			'src' => 'resources/images/content/art/choosecolor/base.png',
-			'alt' => '',
-			'id' =>	'youngChooseTypeFullView',
-			'class' => 'chooseTypeFullView'
-		);
-		echo img($imgprop);
-		?>
+		
+		<canvas id="canvasMain" style="" width="360" height="480"></canvas>
+		<canvas id="canvasMask" style="position: absolute;" width="360" height="480"></canvas>
 		
 		<div id="youngChoosenDressDesc">
-		Fasonem tej spódnicy jest tak zwany półklosz.
+			Fasonem tej spódnicy jest tak zwany półklosz.
 		</div>
 	</div>
 	<div id="youngRightColumn">
