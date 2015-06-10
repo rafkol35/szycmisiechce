@@ -25,7 +25,7 @@ echo anchor('young/choosecolor',img($imgprop));
 		</div>
 	</div>
 	<div id="youngRightColumn">
-		<div id="youngChooseTypeMiniScreen">
+		<div id="youngChooseTypeMiniScreen" class="scrollpane">
 			<?php 
 			$imgprop['class'] = 'youngChooseTypeMiniView';
 			$dressTypes = array("type01.png","type02.png","type03.png","type04.png","type05.png","type01.png","type02.png","type03.png","type04.png","type05.png");

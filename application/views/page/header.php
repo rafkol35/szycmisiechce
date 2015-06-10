@@ -13,7 +13,20 @@
         echo script_tag('resources/scripts/jquery-1.11.2.min.js');        
         echo link_tag('resources/styles/page.css');
         
+        echo script_tag('resources/scripts/jquery.jscrollpane.min.js');
+        echo script_tag('resources/scripts/jquery.mousewheel.js');
+        echo link_tag('resources/styles/jquery.jscrollpane.css');
+        
         ?>
+        
+        <script type="text/javascript">
+            $(function(){
+                $('.scrollpane').jScrollPane({
+                     autoReinitialise: true,
+                     hideFocus: true
+                });
+            });
+        </script>
         
         <?php
         if(isset($csss)) foreach ( $csss as $css )echo '<link rel="Stylesheet" type="text/css" href="'.base_url()."files/".$css."\" />\n";

@@ -149,11 +149,17 @@ img.youngChooseTypeFullView{
 	height: 480px;
 }
 
-div#youngChooseTypeMiniScreen{
+div#youngChooseTypeMiniScreen, div#artChooseTypeMiniScreen{
 	width: 430px;
 	height: 480px;
 	overflow: scroll;
 	overflow-x: hidden;
+	
+}
+
+div#artChooseTypeMiniScreen{
+	width: 370px;
+	height: 380px;
 }
 
 div#youngChoosenDressDesc{

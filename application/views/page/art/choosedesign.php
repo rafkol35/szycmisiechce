@@ -28,7 +28,7 @@ echo anchor('art/choosecolor',img($imgprop));
 		<div id="artChooseColorDesc" style="background-color: inherit; height: 100px;">
 			Kiedy najedziesz kursorem na miniaturkę wzoru, zobaczysz jego powiększenie. Przeciągnij nadruk na zdjęcie, aby zobaczyć jak prezentuje się na spódnicy. 		 
 		</div>
-		<div id="youngChooseTypeMiniScreen" style="width: 370px; height: 380px;">
+		<div id="artChooseTypeMiniScreen" class="scrollpane" style="/*width: 330px; height: 380px;*/">
 			<?php 
 			$imgprop['class'] = 'artChoosePatternMiniView';
 			$patterns = array('desen_1.png','desen_2.png','desen_3.png','desen_4.png',
@@ -36,9 +36,14 @@ echo anchor('art/choosecolor',img($imgprop));
 					'desen_1.png','desen_2.png','desen_3.png','desen_4.png');
 			for( $i = 0 ; $i < count($patterns) ; ++$i ){
 				//echo '<div class="youngChooseTypeMiniCont">';
+				
+				if( $i > 0 && $i % 2 == 0 ) echo '<br />';
+				
 				$imgprop['id'] = 'pattern_'.$i;
 				$imgprop['src'] = 'resources/images/content/art/choosepattern/'.$patterns[$i];
 				echo img($imgprop);
+				
+				//echo "\n"; 
 				//echo '<div class="youndChooseTypeMiniDesc">'.$dressTypes[$i].'</div>';
 				//echo '</div>';
 			}
