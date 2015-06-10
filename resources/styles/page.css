@@ -139,8 +139,8 @@ img.youngChooseTypeMiniView{
 	height: 235px;
 	margin: 0px;
 	padding: 0px;
-	
 }
+
 img.youngChooseTypeFullView{
 	width: 360px;
 	height: 480px;
@@ -240,6 +240,15 @@ div.artChooseColorSampleDesc{
 	float: left;
 	margin-left: 15px;
 	padding-top: 5px;
+	cursor: pointer;
+}
+
+img.artChoosePatternMiniView{
+	width: 150px;
+	height: 180px;
+	margin: 0px 20px 10px 0px;
+	padding: 0px;
+	background-color: white;
 	cursor: pointer;
 }
 	

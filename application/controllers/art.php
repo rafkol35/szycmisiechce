@@ -27,7 +27,7 @@ class Art extends CI_Controller {
     
     public function choosedesign(){
         $data = array();
-    	$data['includeJSs'] = array('index2.php');
+    	$data['includeJSs'] = array('page/art/choosedesign.php');
     	$data['title'] = 'TITLE';
     	$dataArtHeader['what'] = 'choosedesign';
     	$this->load->view('page/header', $data);
