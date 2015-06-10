@@ -18,7 +18,10 @@ html, body {
 	background-color: #b4b8bb;
 	
 	color: white;
-	font-family: 'Capriola', sans-serif;
+	/*font-family: 'Capriola', sans-serif;*/
+	/*font-family: 'Exo 2', sans-serif;*/
+	/*font-family: 'Roboto Condensed', sans-serif;*/
+	font-family: Verdana, Arial, Helvetica, sans-serif;
 }
 
 .wrapper {
