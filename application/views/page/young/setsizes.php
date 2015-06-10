@@ -41,7 +41,7 @@ for( $i = 1 ; $i <= 4 ; ++$i ){
 		
 		<div id="youngSetSizesContainer">
 			<div class="youngSetSizesItem">
-				<input class="setSizeTextControl" type="text" /> obwód tali w cm
+				<input class="setSizeTextControl" type="text" /> obwód talii w cm
 			</div>
 			<div class="youngSetSizesItem">
 				<input class="setSizeTextControl" type="text" /> długość spódnicy w cm
