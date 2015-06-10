@@ -40,7 +40,7 @@ class Young extends CI_Controller {
     
     public function setsizes(){
     	$data = array();
-    	$data['includeJSs'] = array('index2.php');
+    	$data['includeJSs'] = array('page/young/setsizes.php');
     	$data['title'] = 'TITLE';
     	$dataYoungHeader['what'] = 'setsizes';
     	$this->load->view('page/header', $data);
