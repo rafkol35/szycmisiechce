@@ -43,5 +43,5 @@ echo anchor('art/choosedesign',img($imgprop));
 			?>
 		</div>
 	</div>
-	<div style="clear: both;"></div>
+	<div style="clear: both; margin-bottom: 50px;"></div>
 </div>

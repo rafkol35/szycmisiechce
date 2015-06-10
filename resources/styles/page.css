@@ -131,7 +131,7 @@ div.youngChooseTypeMiniCont{
 	float: left;
 	margin-right: 30px;
 	margin-top: 0px;
-	
+	cursor: pointer;
 }
 div.youndChooseTypeMiniDesc{
 	text-align: left;

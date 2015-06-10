@@ -37,7 +37,7 @@ echo anchor('art/choosecolor',img($imgprop));
 			for( $i = 0 ; $i < count($patterns) ; ++$i ){
 				//echo '<div class="youngChooseTypeMiniCont">';
 				
-				if( $i > 0 && $i % 2 == 0 ) echo '<br />';
+				if( $i > 0 && $i < (count($patterns)-1) && $i % 2 == 0 ) echo '<br />';
 				
 				$imgprop['id'] = 'pattern_'.$i;
 				$imgprop['src'] = 'resources/images/content/art/choosepattern/'.$patterns[$i];
@@ -50,5 +50,5 @@ echo anchor('art/choosecolor',img($imgprop));
 			?>
 		</div>
 	</div>
-	<div style="clear: both;"></div>
+	<div style="clear: both; margin-bottom: 50px;"></div>
 </div>

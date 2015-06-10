@@ -57,4 +57,4 @@ echo anchor('young/choosetype',img($imgprop));
 	
 </div>
 
-<div id="color" style="text-align: center; clear: both;">color</div>
+<div id="color" style="text-align: center; clear: both; margin-bottom: 50px;"></div>

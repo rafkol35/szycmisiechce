@@ -33,6 +33,7 @@ echo anchor('young/choosecolor',img($imgprop));
 				echo '<div class="youngChooseTypeMiniCont">';
 				$imgprop['id'] = 'dressType'.$i;
 				$imgprop['src'] = 'resources/images/content/young/choosetype/'.$dressTypes[$i];
+				//$imgprop['class'] = 'youngDressTypeMinImg';
 				echo img($imgprop);
 				echo '<div class="youndChooseTypeMiniDesc">'.$dressTypes[$i].'</div>';
 				echo '</div>';
@@ -40,5 +41,5 @@ echo anchor('young/choosecolor',img($imgprop));
 			?>
 		</div>
 	</div>
-	<div style="clear: both;"></div>
+	<div style="clear: both; margin-bottom: 50px;"></div>
 </div>

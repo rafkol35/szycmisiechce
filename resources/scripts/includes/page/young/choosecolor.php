@@ -107,7 +107,7 @@ function onMouseMove(event){
 	lastMousePosY = Math.floor( event.pageY - parentOffset.top );
 	msg += "    " + lastMousePosX + ", " + lastMousePosY;
 	  
-	$( "#color" ).text( msg );
+	//$( "#color" ).text( msg );
 }
 
 function myRand(min,max){
