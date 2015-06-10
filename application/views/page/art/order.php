@@ -56,5 +56,5 @@ echo anchor('art/setsizes',img($imgprop));
 			</div>
 		</div>
 	</div>
-	<div style="clear: both;">
+	<div style="clear: both;"></div>
 </div>
