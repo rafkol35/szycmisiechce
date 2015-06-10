@@ -40,7 +40,7 @@ class Art extends CI_Controller {
     
     public function setsizes(){
     	$data = array();
-    	$data['includeJSs'] = array('index2.php');
+    	$data['includeJSs'] = array('page/art/setsizes.php');
     	$data['title'] = 'TITLE';
     	$dataArtHeader['what'] = 'setsizes';
     	$this->load->view('page/header', $data);
