@@ -7,7 +7,7 @@ $imgprop = array (
 echo anchor('young/setsizes',img($imgprop));
 
 $imgprop = array (
-		'src' => 'resources/images/page/young/gotosetsizes.png',
+		'src' => 'resources/images/page/young/backtochoosetype.png',
 		'alt' => '',
 		'class' => 'gotoLeft footeritem'
 );

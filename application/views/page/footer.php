@@ -8,13 +8,13 @@
 		'alt' => '',
 		'class' => 'footeritem'
 	);
-	echo anchor('common/jakkupowac',img($imgprop));
+	echo anchor('common/howtobuy',img($imgprop));
 
 	$imgprop['src'] = "resources/images/page/regulamin.png";
-	echo anchor('common/regulamin',img($imgprop));
+	echo anchor('common/rules',img($imgprop));
 	
 	$imgprop['src'] = "resources/images/page/kontakt.png";
-	echo anchor('common/kontakt',img($imgprop));
+	echo anchor('common/contact',img($imgprop));
 	
 	$imgprop['src'] = "resources/images/page/facebook.png";
 	echo anchor('common/facebook',img($imgprop));
