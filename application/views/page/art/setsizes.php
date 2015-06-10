@@ -7,7 +7,7 @@ $imgprop = array (
 echo anchor('art/order',img($imgprop));
 
 $imgprop = array (
-		'src' => 'resources/images/page/art/backtochoosecolor.png',
+		'src' => 'resources/images/page/art/backtochoosedesign.png',
 		'alt' => '',
 		'class' => 'gotoLeft footeritem'
 );

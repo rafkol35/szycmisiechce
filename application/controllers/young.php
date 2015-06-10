@@ -53,7 +53,7 @@ class Young extends CI_Controller {
     
     public function order(){
     	$data = array();
-    	$data['includeJSs'] = array('index2.php');
+    	$data['includeJSs'] = array('page/young/order.php');
     	$data['title'] = 'TITLE';
     	$dataYoungHeader['what'] = 'order';
     	$this->load->view('page/header', $data);
