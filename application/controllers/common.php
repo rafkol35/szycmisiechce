@@ -5,14 +5,10 @@ class Common extends CI_Controller {
 	function __construct() {
         parent::__construct();
         $this->dataMenu = array();
-        $this->dataMenu['what'] = 'young';
+        $this->dataMenu['what'] = 'common';
     }
     
-    public function index() {
-        $this->choosetype();
-    }
-    
-    public function choosetype(){
+    public function howtobuy(){
         $data = array();
         $data['includeJSs'] = array('index2.php');
         $data['title'] = 'TITLE';
@@ -20,25 +16,25 @@ class Common extends CI_Controller {
         $this->load->view('page/header', $data);
         $this->load->view('page/menu', $this->dataMenu);
         $this->load->view('page/contentbegin', $data);
-        $this->load->view('page/young/header', $dataYoungHeader);
-        $this->load->view('page/young/choosetype', $data);
+       	$this->load->view('page/common/header', $dataYoungHeader);
+        $this->load->view('page/common/howtobuy', $data);
         $this->load->view('page/footer', $data);
     }
     
-    public function choosecolor(){
+    public function rules(){
     	$data = array();
-    	$data['includeJSs'] = array('page/young/choosecolor.php');
+    	$data['includeJSs'] = array('index2.php');
     	$data['title'] = 'TITLE';
     	$dataYoungHeader['what'] = 'choosecolor';
     	$this->load->view('page/header', $data);
     	$this->load->view('page/menu', $this->dataMenu);
     	$this->load->view('page/contentbegin', $data);
-    	$this->load->view('page/young/header', $dataYoungHeader);
-    	$this->load->view('page/young/choosecolor', $data);
+    	$this->load->view('page/common/header', $dataYoungHeader);
+    	$this->load->view('page/common/rules', $data);
     	$this->load->view('page/footer', $data);
     }
     
-    public function setsizes(){
+    public function contact(){
     	$data = array();
     	$data['includeJSs'] = array('index2.php');
     	$data['title'] = 'TITLE';
@@ -46,21 +42,8 @@ class Common extends CI_Controller {
     	$this->load->view('page/header', $data);
     	$this->load->view('page/menu', $this->dataMenu);
     	$this->load->view('page/contentbegin', $data);
-    	$this->load->view('page/young/header', $dataYoungHeader);
-    	$this->load->view('page/young/setsizes', $data);
-    	$this->load->view('page/footer', $data);
-    }
-    
-    public function order(){
-    	$data = array();
-    	$data['includeJSs'] = array('index2.php');
-    	$data['title'] = 'TITLE';
-    	$dataYoungHeader['what'] = 'order';
-    	$this->load->view('page/header', $data);
-    	$this->load->view('page/menu', $this->dataMenu);
-    	$this->load->view('page/contentbegin', $data);
-    	$this->load->view('page/young/header', $dataYoungHeader);
-    	$this->load->view('page/young/order', $data);
+    	$this->load->view('page/common/header', $dataYoungHeader);
+    	$this->load->view('page/common/contact', $data);
     	$this->load->view('page/footer', $data);
     }
     

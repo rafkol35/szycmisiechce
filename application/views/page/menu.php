@@ -29,6 +29,15 @@
 			$imgprop['src'] = 'resources/images/page/young.png';
 			echo anchor('young',img($imgprop));
 			break;
+			
+		default:
+			$imgprop['src'] = 'resources/images/page/young.png';
+			echo anchor('young',img($imgprop)).'<br />';
+			$imgprop['src'] = 'resources/images/page/art.png';
+			echo anchor('art',img($imgprop));
+			$imgprop['src'] = 'resources/images/page/exclusive.png';
+			echo anchor('exclusive',img($imgprop));
+			break;
 	}
 ?>
 </div>
