@@ -14,7 +14,7 @@ class Young extends CI_Controller {
     
     public function choosetype(){
         $data = array();
-        $data['includeJSs'] = array('index2.php');
+        $data['includeJSs'] = array('page/young/choosetype.php');
         $data['title'] = 'TITLE';
         $dataYoungHeader['what'] = 'choosetype';
         $this->load->view('page/header', $data);
